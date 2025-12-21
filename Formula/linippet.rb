@@ -5,21 +5,21 @@
 class Linippet < Formula
   desc "One-liner snippet generator for shell."
   homepage "https://github.com/muleyuck/linippet"
-  version "0.2.2"
+  version "0.2.3"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.2.2/linippet_Darwin_x86_64.tar.gz"
-      sha256 "9eb88249ba2440944273a1c5d8cc3376ed1e466aec6ce1bdf0d3f66455aaf8a4"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.2.3/linippet_Darwin_x86_64.tar.gz"
+      sha256 "9d13728cce50c84cf115f53d9248fe23cfa0fd8b054a5d100c240556aed58b18"
 
       def install
         bin.install "linippet"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.2.2/linippet_Darwin_arm64.tar.gz"
-      sha256 "e036dd2229ba2ca2415fcf160b76cb150d864d17fd6ada89c040bd1f75d6a9b2"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.2.3/linippet_Darwin_arm64.tar.gz"
+      sha256 "f6b2292ace8bfc24df2f1f70ff4375c2ffb781ed192da4c43b67760a0592ecee"
 
       def install
         bin.install "linippet"
@@ -28,16 +28,16 @@ class Linippet < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel? and Hardware::CPU.is_64_bit?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.2.2/linippet_Linux_x86_64.tar.gz"
-      sha256 "f83b1e7325f7af23c9b7e6b60235686e6c47d9f6ec074030a0b2d1a2c231515c"
+    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
+      url "https://github.com/muleyuck/linippet/releases/download/v0.2.3/linippet_Linux_x86_64.tar.gz"
+      sha256 "6d35223d35f3f4dcd29ef1920c9dfeab2aad53879b2147911b033baf4463f1af"
       def install
         bin.install "linippet"
       end
     end
-    if Hardware::CPU.arm? and Hardware::CPU.is_64_bit?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.2.2/linippet_Linux_arm64.tar.gz"
-      sha256 "b8bd670566028c05a8e6b6abc880f5bc692af75669b89222ff15e95717eb2e03"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/muleyuck/linippet/releases/download/v0.2.3/linippet_Linux_arm64.tar.gz"
+      sha256 "a20d4012f2171d7ad14493f4f4e073c054d63052d561ad27f0872fb97b4e9222"
       def install
         bin.install "linippet"
       end
