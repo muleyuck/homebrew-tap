@@ -1,25 +1,25 @@
 class Edio < Formula
-  desc "JSON navigator and interactive filter leveraging jq"
+  desc "A command-line tool that opens stdin in your editor and outputs the result to stdout"
   homepage "https://github.com/muleyuck/edio"
-  version "0.2.0"
+  version "0.2.1"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/edio/releases/download/v0.2.0/edio-aarch64-apple-darwin.tar.xz"
-      sha256 "8eded3ba8a2cf7dd2cd9e47cd2282d969c66518fdc238df267d0cdc6de343774"
+      url "https://github.com/muleyuck/edio/releases/download/v0.2.1/edio-aarch64-apple-darwin.tar.xz"
+      sha256 "5d47b0307b1ce21204579028a19daf3d114cf06892de37d3ec91b0ea843ff493"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/edio/releases/download/v0.2.0/edio-x86_64-apple-darwin.tar.xz"
-      sha256 "2067a6678baae63b3512214d9b123c86109b1682e0b1cf26bf58cb6d954801e6"
+      url "https://github.com/muleyuck/edio/releases/download/v0.2.1/edio-x86_64-apple-darwin.tar.xz"
+      sha256 "86306d6ba5c6c5e74965f6b240432a85e61852e6110a20575c09c26b3d0f8b91"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/edio/releases/download/v0.2.0/edio-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "e77158b3ed3139b836c900354d8878b610609a577686872732c326231f1fd80e"
+      url "https://github.com/muleyuck/edio/releases/download/v0.2.1/edio-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "c6f48d97e417e90dc06870dd11721adb9a5fec71b8b8219afcb12033e253e057"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/edio/releases/download/v0.2.0/edio-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "a46a427ea46472521cc6495914fa33e7e0174ed5ee208fa35eeb99a42007c352"
+      url "https://github.com/muleyuck/edio/releases/download/v0.2.1/edio-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "327d1aeb3aa7267f4a4eef4028a16c5ba6dc535c506a3f48914c5d66f2ac5cd6"
     end
   end
   license "MIT"
