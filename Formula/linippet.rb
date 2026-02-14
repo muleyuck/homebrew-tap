@@ -5,21 +5,21 @@
 class Linippet < Formula
   desc "One-liner snippet generator for shell."
   homepage "https://github.com/muleyuck/linippet"
-  version "0.2.4"
+  version "0.3.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.2.4/linippet_Darwin_x86_64.tar.gz"
-      sha256 "38eaf4a391d161c665ba956c491bb7d9934de749066a5e7a6bd281ef14000581"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.3.0/linippet_Darwin_x86_64.tar.gz"
+      sha256 "d29bf99ebe9ab1df97ee09438af3eb4c8aa43a62ebd7b31b8b22cb95c84b81fb"
 
       def install
         bin.install "linippet"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.2.4/linippet_Darwin_arm64.tar.gz"
-      sha256 "a42ac1896d11438e0534d0d21657c4d8839e509449beef6f014c1b40ee8bb765"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.3.0/linippet_Darwin_arm64.tar.gz"
+      sha256 "ac3968520b31bac19a744e8d145920482f2c190ab07bfd58b929caa93814af0c"
 
       def install
         bin.install "linippet"
@@ -29,15 +29,15 @@ class Linippet < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.2.4/linippet_Linux_x86_64.tar.gz"
-      sha256 "4f9cde3de927cba13cffc33609f390c1e1dc6e52a61003c887621cdf649494a5"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.3.0/linippet_Linux_x86_64.tar.gz"
+      sha256 "68aca763d620324ff82c41a2578262220c0f3ad6c11809c45707b43c19969675"
       def install
         bin.install "linippet"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.2.4/linippet_Linux_arm64.tar.gz"
-      sha256 "96c8ccab44dcfe29d4e21458a315a80240a3abe2dfadfeb829b03dfaac0591f8"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.3.0/linippet_Linux_arm64.tar.gz"
+      sha256 "99e32809f388f538bd74b3e5f36dc34a13d100c954c99893c5ecfeac155bcdf3"
       def install
         bin.install "linippet"
       end
