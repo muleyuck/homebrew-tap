@@ -5,21 +5,21 @@
 class Linippet < Formula
   desc "One-liner snippet generator for shell."
   homepage "https://github.com/muleyuck/linippet"
-  version "0.4.0"
+  version "0.5.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.4.0/linippet_Darwin_x86_64.tar.gz"
-      sha256 "7ffa7a31dbfa84238c786b6691a38ca0a8a76c1f61c4a896d4b0f71d27f5b2ee"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.5.0/linippet_Darwin_x86_64.tar.gz"
+      sha256 "2d584f4bce8560a851cb69a99a22c44391dc65b160f29b7f7dacdd01df89cb54"
 
       define_method(:install) do
         bin.install "linippet"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.4.0/linippet_Darwin_arm64.tar.gz"
-      sha256 "8aa7665e669820c2326759fc562435c2771b107bda99c85c4b582e78ee54d266"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.5.0/linippet_Darwin_arm64.tar.gz"
+      sha256 "18f9fec62f7b82c1493e0e062dc75b0dd02cd516eff4ae46bd54eec7d6d8b9b5"
 
       define_method(:install) do
         bin.install "linippet"
@@ -29,15 +29,15 @@ class Linippet < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.4.0/linippet_Linux_x86_64.tar.gz"
-      sha256 "7e2e41fc1f46442aaf66bb647e15c1e4742db7c5b2a6cf8d0c0143381055bcbc"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.5.0/linippet_Linux_x86_64.tar.gz"
+      sha256 "22cd747264849865e83530c06cfeacde975c637542deeaa214e14e9e65cba53c"
       define_method(:install) do
         bin.install "linippet"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/muleyuck/linippet/releases/download/v0.4.0/linippet_Linux_arm64.tar.gz"
-      sha256 "92561986a5f783cafcc0b1a70e1e748ee9989ea486c2ea0a81d06e51dbf268b7"
+      url "https://github.com/muleyuck/linippet/releases/download/v0.5.0/linippet_Linux_arm64.tar.gz"
+      sha256 "f377c5dffaf22047de13853bb3c03905bf3bdf695c40696d938517cf59d1c5b3"
       define_method(:install) do
         bin.install "linippet"
       end
