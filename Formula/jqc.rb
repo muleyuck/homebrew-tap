@@ -1,25 +1,25 @@
 class Jqc < Formula
   desc "jq for JSONC — query, view, and edit JSON-with-Comments files without losing your comments."
   homepage "https://github.com/muleyuck/jqc"
-  version "0.1.0"
+  version "0.2.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.1.0/jqc-aarch64-apple-darwin.tar.xz"
-      sha256 "7ed5312f3bfcc0fec72b0befc4db05443f6be9482dbc743f280021f32b0fba14"
+      url "https://github.com/muleyuck/jqc/releases/download/v0.2.0/jqc-aarch64-apple-darwin.tar.xz"
+      sha256 "9620b077e3ab8752689b20e91d4f59fdab47f9fe57923beb2649ee4296dad890"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.1.0/jqc-x86_64-apple-darwin.tar.xz"
-      sha256 "41b2507a0bc0c7f2370a904af0de91172cdc7f2eab720f9ee583c2e93a66046a"
+      url "https://github.com/muleyuck/jqc/releases/download/v0.2.0/jqc-x86_64-apple-darwin.tar.xz"
+      sha256 "07e85fe322b6605773c62c88c20abfe97977c50ade6694056754328807f9b554"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.1.0/jqc-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "c91bd8b7f9b9c0224d7827b2b545ba62263e9c12af85d0c3f0208eeea3497159"
+      url "https://github.com/muleyuck/jqc/releases/download/v0.2.0/jqc-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "762356a48e6aba9fef194e924989bed021ad77f5484a2c00f079add554c35aac"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.1.0/jqc-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "6e9848a00a4a9b31eb9cb307d5b77516a5bb02728df489578de2be11e3a450d3"
+      url "https://github.com/muleyuck/jqc/releases/download/v0.2.0/jqc-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "facd81b903c6b82bbb922bf1b60b50258d6a7f808dca3a795f9265bcae76e81b"
     end
   end
   license "MIT"
