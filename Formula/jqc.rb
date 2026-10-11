@@ -1,28 +1,29 @@
 class Jqc < Formula
   desc "jq for JSONC — query, view, and edit JSON-with-Comments files without losing your comments."
   homepage "https://github.com/muleyuck/jqc"
-  version "0.2.0"
+  version "0.3.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.2.0/jqc-aarch64-apple-darwin.tar.xz"
-      sha256 "9620b077e3ab8752689b20e91d4f59fdab47f9fe57923beb2649ee4296dad890"
+      url "https://github.com/muleyuck/jqc/releases/download/v0.3.0/jqc-aarch64-apple-darwin.tar.xz"
+      sha256 "abc74155507384f1401006f0bf56ef8a6299e251d832ceffef79f19f5ce4fe50"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.2.0/jqc-x86_64-apple-darwin.tar.xz"
-      sha256 "07e85fe322b6605773c62c88c20abfe97977c50ade6694056754328807f9b554"
+      url "https://github.com/muleyuck/jqc/releases/download/v0.3.0/jqc-x86_64-apple-darwin.tar.xz"
+      sha256 "89947a62d40adcf578bda8abebdddb92f2efd6e1217c6d1bcb56b868943800dd"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.2.0/jqc-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "762356a48e6aba9fef194e924989bed021ad77f5484a2c00f079add554c35aac"
+      url "https://github.com/muleyuck/jqc/releases/download/v0.3.0/jqc-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "09d35740f1e010337d67a45fd40bf18cac5a83d3647b223ff3bc2e87ada568cc"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.2.0/jqc-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "facd81b903c6b82bbb922bf1b60b50258d6a7f808dca3a795f9265bcae76e81b"
+      url "https://github.com/muleyuck/jqc/releases/download/v0.3.0/jqc-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "9af69c2140ba4e49df572fe9f355003e0f7edcc7339dec4f6cec47eea537b77b"
     end
   end
   license "MIT"
+  depends_on "jq"
 
   BINARY_ALIASES = {
     "aarch64-apple-darwin":      {},
@@ -47,10 +48,18 @@ class Jqc < Formula
   end
 
   def install
-    bin.install "jqc" if OS.mac? && Hardware::CPU.arm?
-    bin.install "jqc" if OS.mac? && Hardware::CPU.intel?
-    bin.install "jqc" if OS.linux? && Hardware::CPU.arm?
-    bin.install "jqc" if OS.linux? && Hardware::CPU.intel?
+    if OS.mac? && Hardware::CPU.arm?
+      bin.install "jqc"
+    end
+    if OS.mac? && Hardware::CPU.intel?
+      bin.install "jqc"
+    end
+    if OS.linux? && Hardware::CPU.arm?
+      bin.install "jqc"
+    end
+    if OS.linux? && Hardware::CPU.intel?
+      bin.install "jqc"
+    end
 
     install_binary_aliases!
 
