@@ -1,74 +1,38 @@
 class Jqc < Formula
-  desc "jq for JSONC — query, view, and edit JSON-with-Comments files without losing your comments."
+  desc "Query and edit JSON with comments (JSONC) using jq"
   homepage "https://github.com/muleyuck/jqc"
-  version "0.3.0"
-  if OS.mac?
-    if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.3.0/jqc-aarch64-apple-darwin.tar.xz"
-      sha256 "abc74155507384f1401006f0bf56ef8a6299e251d832ceffef79f19f5ce4fe50"
-    end
-    if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.3.0/jqc-x86_64-apple-darwin.tar.xz"
-      sha256 "89947a62d40adcf578bda8abebdddb92f2efd6e1217c6d1bcb56b868943800dd"
-    end
-  end
-  if OS.linux?
-    if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.3.0/jqc-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "09d35740f1e010337d67a45fd40bf18cac5a83d3647b223ff3bc2e87ada568cc"
-    end
-    if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/jqc/releases/download/v0.3.0/jqc-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "9af69c2140ba4e49df572fe9f355003e0f7edcc7339dec4f6cec47eea537b77b"
-    end
-  end
+  version "0.4.0"
   license "MIT"
+
   depends_on "jq"
 
-  BINARY_ALIASES = {
-    "aarch64-apple-darwin":      {},
-    "aarch64-unknown-linux-gnu": {},
-    "x86_64-apple-darwin":       {},
-    "x86_64-unknown-linux-gnu":  {},
-  }.freeze
-
-  def target_triple
-    cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
-    os = OS.mac? ? "apple-darwin" : "unknown-linux-gnu"
-
-    "#{cpu}-#{os}"
+  on_macos do
+    on_arm do
+      url "https://github.com/muleyuck/jqc/releases/download/v#{version}/jqc-aarch64-apple-darwin.tar.xz"
+      sha256 "cf90583fdbf8c1e2c098a1fb0a952ac28fd07ac0ff1009ba8156a569ceca6a1c"
+    end
+    on_intel do
+      url "https://github.com/muleyuck/jqc/releases/download/v#{version}/jqc-x86_64-apple-darwin.tar.xz"
+      sha256 "b35f4d251692cf5bcd6d85d35e1fcc4b4d387bc04f6782b8587826151da98a57"
+    end
   end
 
-  def install_binary_aliases!
-    BINARY_ALIASES[target_triple.to_sym].each do |source, dests|
-      dests.each do |dest|
-        bin.install_symlink bin/source.to_s => dest
-      end
+  on_linux do
+    on_arm do
+      url "https://github.com/muleyuck/jqc/releases/download/v#{version}/jqc-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "fcd0e0b47026b851b8ef0835e9d6d9cf9a3aff5211b06f152f90f8eda6165faa"
+    end
+    on_intel do
+      url "https://github.com/muleyuck/jqc/releases/download/v#{version}/jqc-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "d4433b60b70649b9e3665b2e2915c086249e1b349e930867ac806dca4aa4b48d"
     end
   end
 
   def install
-    if OS.mac? && Hardware::CPU.arm?
-      bin.install "jqc"
-    end
-    if OS.mac? && Hardware::CPU.intel?
-      bin.install "jqc"
-    end
-    if OS.linux? && Hardware::CPU.arm?
-      bin.install "jqc"
-    end
-    if OS.linux? && Hardware::CPU.intel?
-      bin.install "jqc"
-    end
+    bin.install "jqc"
+  end
 
-    install_binary_aliases!
-
-    # Homebrew will automatically install these, so we don't need to do that
-    doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
-    leftover_contents = Dir["*"] - doc_files
-
-    # Install any leftover files in pkgshare; these are probably config or
-    # sample files.
-    pkgshare.install(*leftover_contents) unless leftover_contents.empty?
+  test do
+    assert_match version.to_s, shell_output("#{bin}/jqc --version")
   end
 end
