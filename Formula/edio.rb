@@ -1,65 +1,36 @@
 class Edio < Formula
-  desc "A command-line tool that opens stdin in your editor and outputs the result to stdout"
+  desc "Edit stdin in your editor and print the result to stdout"
   homepage "https://github.com/muleyuck/edio"
-  version "0.2.1"
-  if OS.mac?
-    if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/edio/releases/download/v0.2.1/edio-aarch64-apple-darwin.tar.xz"
-      sha256 "5d47b0307b1ce21204579028a19daf3d114cf06892de37d3ec91b0ea843ff493"
-    end
-    if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/edio/releases/download/v0.2.1/edio-x86_64-apple-darwin.tar.xz"
-      sha256 "86306d6ba5c6c5e74965f6b240432a85e61852e6110a20575c09c26b3d0f8b91"
-    end
-  end
-  if OS.linux?
-    if Hardware::CPU.arm?
-      url "https://github.com/muleyuck/edio/releases/download/v0.2.1/edio-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "c6f48d97e417e90dc06870dd11721adb9a5fec71b8b8219afcb12033e253e057"
-    end
-    if Hardware::CPU.intel?
-      url "https://github.com/muleyuck/edio/releases/download/v0.2.1/edio-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "327d1aeb3aa7267f4a4eef4028a16c5ba6dc535c506a3f48914c5d66f2ac5cd6"
-    end
-  end
+  version "0.3.0"
   license "MIT"
 
-  BINARY_ALIASES = {
-    "aarch64-apple-darwin":      {},
-    "aarch64-unknown-linux-gnu": {},
-    "x86_64-apple-darwin":       {},
-    "x86_64-unknown-linux-gnu":  {},
-  }.freeze
-
-  def target_triple
-    cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
-    os = OS.mac? ? "apple-darwin" : "unknown-linux-gnu"
-
-    "#{cpu}-#{os}"
+  on_macos do
+    on_arm do
+      url "https://github.com/muleyuck/edio/releases/download/v#{version}/edio-aarch64-apple-darwin.tar.xz"
+      sha256 "7100a5749be89db042cf016461d0f72fe0d21cf20faa7a0235c8f5227bd8f181"
+    end
+    on_intel do
+      url "https://github.com/muleyuck/edio/releases/download/v#{version}/edio-x86_64-apple-darwin.tar.xz"
+      sha256 "6b17f1de68839cc0c8a04615e060a0995f78004686f22af5cb1f097ffde36744"
+    end
   end
 
-  def install_binary_aliases!
-    BINARY_ALIASES[target_triple.to_sym].each do |source, dests|
-      dests.each do |dest|
-        bin.install_symlink bin/source.to_s => dest
-      end
+  on_linux do
+    on_arm do
+      url "https://github.com/muleyuck/edio/releases/download/v#{version}/edio-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "0a57fcd6a6044ef8bfabc1186f6a763a115689d23b985d5ffce9dd4c90e0f04f"
+    end
+    on_intel do
+      url "https://github.com/muleyuck/edio/releases/download/v#{version}/edio-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "c0246a72b552b82e56f84497e250313e7a4a58e48955a5b8b6013bfce7e1b514"
     end
   end
 
   def install
-    bin.install "edio" if OS.mac? && Hardware::CPU.arm?
-    bin.install "edio" if OS.mac? && Hardware::CPU.intel?
-    bin.install "edio" if OS.linux? && Hardware::CPU.arm?
-    bin.install "edio" if OS.linux? && Hardware::CPU.intel?
+    bin.install "edio"
+  end
 
-    install_binary_aliases!
-
-    # Homebrew will automatically install these, so we don't need to do that
-    doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
-    leftover_contents = Dir["*"] - doc_files
-
-    # Install any leftover files in pkgshare; these are probably config or
-    # sample files.
-    pkgshare.install(*leftover_contents) unless leftover_contents.empty?
+  test do
+    assert_match version.to_s, shell_output("#{bin}/edio --version")
   end
 end
