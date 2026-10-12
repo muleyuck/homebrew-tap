@@ -1,7 +1,7 @@
 class Jqc < Formula
   desc "Query and edit JSON with comments (JSONC) using jq"
   homepage "https://github.com/muleyuck/jqc"
-  version "0.4.0"
+  version "0.4.1"
   license "MIT"
 
   depends_on "jq"
@@ -9,22 +9,22 @@ class Jqc < Formula
   on_macos do
     on_arm do
       url "https://github.com/muleyuck/jqc/releases/download/v#{version}/jqc-aarch64-apple-darwin.tar.xz"
-      sha256 "cf90583fdbf8c1e2c098a1fb0a952ac28fd07ac0ff1009ba8156a569ceca6a1c"
+      sha256 "25e4b8e8f5766de01d5c41424190462240cbb8800fc2b2a2aeda614498e9d61c"
     end
     on_intel do
       url "https://github.com/muleyuck/jqc/releases/download/v#{version}/jqc-x86_64-apple-darwin.tar.xz"
-      sha256 "b35f4d251692cf5bcd6d85d35e1fcc4b4d387bc04f6782b8587826151da98a57"
+      sha256 "e40d35e0f160f406e508034af1a0401e7612589c64020dc8f79c274eda67159a"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/muleyuck/jqc/releases/download/v#{version}/jqc-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "fcd0e0b47026b851b8ef0835e9d6d9cf9a3aff5211b06f152f90f8eda6165faa"
+      sha256 "0cda0cc0679ef6f9907191825f9a4b646c2b4c12d59dc1aae7e04d80c7e43d47"
     end
     on_intel do
       url "https://github.com/muleyuck/jqc/releases/download/v#{version}/jqc-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "d4433b60b70649b9e3665b2e2915c086249e1b349e930867ac806dca4aa4b48d"
+      sha256 "ef2f83614b53bb403cd7ba68143075e4b5e7273a9b896a26b0a25cc9b4df389a"
     end
   end
 
