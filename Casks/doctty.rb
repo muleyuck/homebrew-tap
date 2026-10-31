@@ -1,0 +1,30 @@
+cask "doctty" do
+  version "0.2.0"
+  sha256 "1ecc0af889c7dc2c6d407f349e4eae3c406a03b24281ac9c39a3f81951929dc1"
+
+  url "https://github.com/muleyuck/doctty/releases/download/v#{version}/doctty-#{version}-macos-arm64.zip"
+  name "doctty"
+  desc "GitHub-styled Markdown viewer for Ghostty and Kitty"
+  homepage "https://github.com/muleyuck/doctty"
+
+  depends_on arch: :arm64
+  # Built and smoke-tested on macOS Sequoia (15); earlier releases are unverified.
+  depends_on macos: :sequoia
+
+  # The launcher resolves the bundle's real directory even when the cask
+  # symlinks it into /opt/homebrew/bin; all three native binaries stay together.
+  binary "doctty-macos-arm64/doctty-cli", target: "doctty"
+
+  caveats <<~EOS
+    doctty needs a terminal with Kitty graphics support, such as Ghostty,
+    Kitty, or a Herdr pane inside Ghostty, for interactive rendering.
+
+    This build is ad-hoc signed and is NOT Apple-notarized. Gatekeeper may
+    independently block doctty and its native or Swift/WebKit helpers.
+    After verifying the official release checksum and source, go to macOS
+    System Settings > Privacy & Security > Open Anyway for each blocked
+    executable as needed, then retry doctty. A "WebKit helper closed its
+    output" error may mean its executable still needs individual approval.
+    Do not disable Gatekeeper system-wide or blindly remove quarantine.
+  EOS
+end
