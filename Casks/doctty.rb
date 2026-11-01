@@ -1,6 +1,6 @@
 cask "doctty" do
-  version "0.2.0"
-  sha256 "1ecc0af889c7dc2c6d407f349e4eae3c406a03b24281ac9c39a3f81951929dc1"
+  version "0.3.0"
+  sha256 "85603891f27410560db43a8c87f095d176db2cfe7c89203ada3e77fe86e46aa9"
 
   url "https://github.com/muleyuck/doctty/releases/download/v#{version}/doctty-#{version}-macos-arm64.zip"
   name "doctty"
@@ -15,16 +15,18 @@ cask "doctty" do
   # symlinks it into /opt/homebrew/bin; all three native binaries stay together.
   binary "doctty-macos-arm64/doctty-cli", target: "doctty"
 
+  # doctty is ad-hoc signed only, so Gatekeeper would block each of its
+  # quarantined executables (CLI, renderer and Swift/WebKit helper).
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{staged_path}}/doctty-macos-arm64"]
+  end
+
   caveats <<~EOS
     doctty needs a terminal with Kitty graphics support, such as Ghostty,
     Kitty, or a Herdr pane inside Ghostty, for interactive rendering.
 
-    This build is ad-hoc signed and is NOT Apple-notarized. Gatekeeper may
-    independently block doctty and its native or Swift/WebKit helpers.
-    After verifying the official release checksum and source, go to macOS
-    System Settings > Privacy & Security > Open Anyway for each blocked
-    executable as needed, then retry doctty. A "WebKit helper closed its
-    output" error may mean its executable still needs individual approval.
-    Do not disable Gatekeeper system-wide or blindly remove quarantine.
+    This build is ad-hoc signed and is NOT Apple-notarized. The cask clears
+    the download quarantine on its own bundle only, so Gatekeeper does not
+    block doctty or its helpers.
   EOS
 end
