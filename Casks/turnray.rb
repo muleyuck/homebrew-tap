@@ -1,10 +1,10 @@
 cask "turnray" do
-  version "0.2.0"
-  sha256 "fdf85e666feb30cd42ff48a2b8d6e76a873bf48aef185a8d60e3d9fd82acad68"
+  version "0.3.0"
+  sha256 "e771595676c570702a5b6ec862e767e2d160816fd93f6e1dc10814fffe8075f2"
 
   url "https://github.com/muleyuck/turnray/releases/download/v#{version}/turnray-#{version}.zip"
   name "turnray"
-  desc "Menu bar app that shows the status of AI agents running under herdr"
+  desc "Menu bar app that shows the status of herdr, Claude Code and Codex agents"
   homepage "https://github.com/muleyuck/turnray"
 
   depends_on :macos
@@ -19,10 +19,20 @@ cask "turnray" do
   zap trash: "~/Library/Application Support/turnray"
 
   caveats <<~EOS
-    turnray shows agents from herdr, so herdr must be installed and running
-    (for example: brew install herdr).
+    turnray shows agents from herdr, so either run herdr (for example:
+    brew install herdr) or install its Claude Code or Codex plugin:
 
-    To start turnray at login, add it in
-    System Settings > General > Login Items.
+      claude plugin marketplace add muleyuck/turnray
+      claude plugin install turnray@turnray
+
+      codex plugin marketplace add muleyuck/turnray
+      codex plugin add turnray@turnray
+
+    After installing the Codex plugin, and after each update, approve its hooks
+    with /hooks in Codex.
+
+    To start turnray at login, check Launch at login in its settings (⚙).
+    On macOS 12 and earlier, add it in
+    System Settings > General > Login Items instead.
   EOS
 end
