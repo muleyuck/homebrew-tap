@@ -1,6 +1,6 @@
 cask "turnray" do
-  version "0.5.0"
-  sha256 "816f23236643b567a2bb0bc6f4567a934597fdbf4471026dc22d5c0e6b300689"
+  version "0.6.0"
+  sha256 "cde176bdde42dcea8a84eaa1eb63f5edcf2a5935f5fd285de474ae7ea03b47a3"
 
   url "https://github.com/muleyuck/turnray/releases/download/v#{version}/turnray-#{version}.zip"
   name "turnray"
